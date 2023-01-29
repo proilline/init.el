@@ -22,6 +22,7 @@
    '("j" . "H-j")
    '("k" . "H-k")
    '("s" . "M-s")
+   '("p" . "M-p")
    ;; Use SPC (0-9) for digit arguments.
    '("1" . meow-digit-argument)
    '("2" . meow-digit-argument)
@@ -125,3 +126,15 @@
   :straight t
   :hook
   (prog-mode-hook . rainbow-delimiters-mode))
+
+(leaf consult
+  :straight t
+  :config
+  (consult-customize
+   consult-ripgrep consult-git-grep consult-grep)
+  :bind
+  (
+   ("M-y" . consult-yank-pop)
+   ("M-s f" . consult-ripgrep)
+   ("M-s G" . consult-git-grep)
+   ("M-s l" . consult-line)))

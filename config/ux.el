@@ -38,7 +38,7 @@
 	"Ouptput\\*$"
 	"\\*Warnigns\\*"
 	"\\*Async Shell Command\\*"
-	"^\\*eshell.*\\*$" eshell-mode
+	".*eshell\\*$" eshell-mode
 	"\\*xref\\*"
 	"^\\*eldoc.*\\*$"
 	help-mode

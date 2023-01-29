@@ -20,3 +20,6 @@
   :bind (dired-mode-map
 	 ("C-A" . dired-omit-mode)))
 
+(setq tramp-default-method "ssh")
+
+(setq browse-url-generic-program "librewolf")

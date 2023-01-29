@@ -40,6 +40,7 @@
 	 (inhibit-compacting-font-caches . t) ;; gc don't remove font caches
 	 (minibuffer-prompt-properties
 	  . '(read-only t cursor-intangible t face minibuffer-prompt))
+	 (make-backup-files . nil)
 	 (backup-by-copying . t)
 	 (backup-directory-alist '(".*" . ,temporary-file-directory))
 	 (auto-save-file-name-transforms
