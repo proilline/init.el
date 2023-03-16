@@ -21,7 +21,7 @@
    ;; SPC j/k will run the original command in MOTION state.
    '("j" . "H-j")
    '("k" . "H-k")
-   '("s" . "M-s")
+   '("s" . "M-+")
    '("p" . "M-p")
    ;; Use SPC (0-9) for digit arguments.
    '("1" . meow-digit-argument)
@@ -87,7 +87,7 @@
    '("s" . meow-kill)
    '("t" . meow-till)
    '("u" . meow-undo)
-   '("U" . meow-undo-in-selection)
+   '("U" . vundo)
    '("v" . meow-right-expand)
    '("/" . meow-visit)
    '("w" . meow-mark-word)
@@ -133,8 +133,8 @@
   (consult-customize
    consult-ripgrep consult-git-grep consult-grep)
   :bind
-  (
-   ("M-y" . consult-yank-pop)
-   ("M-s f" . consult-ripgrep)
-   ("M-s G" . consult-git-grep)
-   ("M-s l" . consult-line)))
+  (("M-y" . consult-yank-pop)
+   ("M-+ f" . consult-ripgrep)
+   ("M-+ G" . consult-git-grep)
+   ("M-+ l" . consult-line)
+   ("C-x C-b" . consult-buffer)))

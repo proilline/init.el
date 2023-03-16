@@ -15,9 +15,8 @@
   :setq
   ((corfu-cycle . t)
    (corfu-auto  . nil))
-  :hook
-  (prog-mode-hook text-mode-hook
-		  . corfu-mode)
+  :config
+  (global-corfu-mode)
   :bind
   (corfu-map
    ("TAB" . corfu-next)
@@ -41,6 +40,7 @@
 	".*eshell\\*$" eshell-mode
 	"\\*xref\\*"
 	"^\\*eldoc.*\\*$"
+	"^\\*Man.*$"
 	help-mode
 	compilation-mode)))
   :bind
@@ -55,10 +55,18 @@
   (completion-category-overrieds
    . '((file (styles basic partial-completion)))))
 
-
 (leaf ace-window
   :straight t
   :setq
   (aw-keys . '(?h ?j ?k ?l))
   :bind
   ("M-o" . ace-window))
+
+
+(leaf cape
+  :straight t
+  :init
+  (add-to-list 'completion-at-point-functions #'cape-dabbrev)
+  (add-to-list 'completion-at-point-functions #'cape-file))
+
+

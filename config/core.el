@@ -1,7 +1,9 @@
 ;; core.el
 ;;
+
 ;; straight.el, leaf.el, and some builtin settings here.
 
+(setq straight-repository-branch "rr-fix-renamed-variable")
 (defvar bootstrap-version)
 (let ((bootstrap-file
        (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
@@ -40,24 +42,18 @@
 	 (inhibit-compacting-font-caches . t) ;; gc don't remove font caches
 	 (minibuffer-prompt-properties
 	  . '(read-only t cursor-intangible t face minibuffer-prompt))
-	 (make-backup-files . nil)
-	 (backup-by-copying . t)
-	 (backup-directory-alist '(".*" . ,temporary-file-directory))
-	 (auto-save-file-name-transforms
-	  '(".*" ,temporary-file-directory t)))
+	 (make-backup-files . nil))
   :advice
   (:filter-args completing-read-multipe crm-indicator) ;; settings for vertico
   
   :bind
   ("M-SPC"   . async-shell-command)
-  ("C-x b"   . 'ibuffer)
-  ("C-x C-b" . 'switch-to-buffer)
-  
-  )
-(add-to-list 'default-frame-alist '(font . "monospace-16"))
+  ("C-x b"   . 'ibuffer))
+
+(add-to-list 'default-frame-alist '(font . "iosevka-16"))
 (set-face-attribute 'default nil
-		    :family "monospace-16")
-(set-frame-font "monospace-16" nil t)
+		    :family "iosevka-16")
+(set-frame-font "iosevka-16" nil t)
 
 (defun crm-indicator (args)
   (cons (format "[CRM%s] %s"

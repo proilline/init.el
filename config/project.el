@@ -6,8 +6,8 @@
   :setq
   :bind
   (("M-p C-p" . project-switch-project)
-  ("M-p C-b" . project-switch-to-buffer)
-  ("M-p C-f" . project-find-file)
-  ("M-p C-k" . project-kill-buffers)
+  ("M-p C-b"  . consult-project-buffer)
+  ("M-p C-f"  . project-find-file)
+  ("M-p C-k"  . project-kill-buffers)
   ))
 
