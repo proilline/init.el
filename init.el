@@ -9,17 +9,6 @@
 (load-file "~/.emacs.d/config/ux.el")
 (load-file "~/.emacs.d/config/prog.el")
 
-;; TODO : edit kemap setting
-(leaf dired-x
-  :setq ((dired-omit-mode . 1)
-	 (dired-omit-files . "^\\..*$") ;; hide dotfiles
-	 (dired-recursive-copies 'top)
-	 (dired-recursive-deletes 'top))
-  :require t
-  :after dired
-  :bind (dired-mode-map
-	 ("C-A" . dired-omit-mode)))
-
 (setq tramp-default-method "ssh")
 
 ;; make missing dir automatically when find-file
@@ -42,6 +31,21 @@
   (("M-n" . tempel-complete))
   :hook
   ((prog-mode-hook text-mode-hook) . tempel-setup-capf))
+
+(leaf dirvish
+  :straight t
+  :init
+  (dirvish-override-dired-mode)
+  :setq
+  (dired-listing-switches
+   . "-l --almost-all --human-readable --group-directory-first --no-group")
+  :bind
+  (:dirvish-mode-map
+   ("a" . dirvish-quick-access)
+   ("i" . dirvish-file-info-menu)
+   ("v" . dirvish-vc-menu)
+   ("TAB" . dirvish-subtree-toggle)
+   ))
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.

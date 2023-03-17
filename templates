@@ -1,0 +1,40 @@
+fundamental-mode ;; Available everywhere
+
+(today (format-time-string "%Y-%m-%d"))
+
+emacs-lisp-mode
+
+(lambda "(lambda (" p ")" n> r> ")")
+(leaf "(leaf "p n> ":init" n> r> ")")
+
+rust-mode
+
+(match "match " p "{" n> r> n> "}")
+(if "if " p " {" n> r> n> "}")
+(cl "|" p "| {" n> r> n> "}")
+(stru "struct " p "{" n> r>  n> "}")
+(enum "enum " p "{" n> r>  n> "}")
+(fn "fn " p "(" p ")" p "{" n> r> n> "}")
+
+(mtest "#[cfg(test)]" n> "mod test {" n> "use super::*;" n> "#[test]" n> " fn " p "() {" n> r> n> "}" n> "}" n> "}")
+
+(ftest "#[test]" n> "fn test_" p "(){" n> r> n> "}")
+
+(assert_eq "assert_eq!(" p " , " r> ");")
+
+
+(while "while let " p " = " p "{" n> r> n> "}")
+c-mode
+
+(inc "#include <" (p (concat (file-name-base (or (buffer-file-name) (buffer-name))) ".h")) ">")
+(incc "#include \"" (p (concat (file-name-base (or (buffer-file-name) (buffer-name))) ".h")) "\"")
+
+(whi "while (" p ") {" n> r> n> "}")
+(for "for (" p ") {" n> r> n> "}")
+(str "struct p {" n> r> n> "};")
+
+(if "if (" p ") {" n> r n> "}")
+org-mode
+
+(caption "#+caption: ")
+(title "#+title: " p n "#+author: proilline" n)
