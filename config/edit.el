@@ -8,12 +8,12 @@
 	     (let ((current-prefix-arg -1))
 	       (call-interactively 'meow-till)))
 
+
 (defun meow-setup ()
   (setq meow-cheatsheet-layout meow-cheatsheet-layout-qwerty)
   (meow-motion-overwrite-define-key
    '("j" . meow-next)
    '("k" . meow-prev)
-   '("<escape>" . ignore)
    '("/" . meow-visit)
    '("[" . meow-beginning-of-thing)
    '("]" . meow-end-of-thing))
@@ -81,7 +81,7 @@
    '("O" . meow-to-block)
    '("p" . meow-yank)
    '("q" . meow-quit)
-   '("Q" . meow-goto-line)
+   '("Q" . consult-goto-line)
    '("r" . meow-replace)
    '("R" . meow-swap-grab)
    '("s" . meow-kill)
@@ -93,8 +93,8 @@
    '("w" . meow-mark-word)
    '("W" . meow-mark-symbol)
    '("x" . meow-line)
-   '("X" . meow-goto-line)
-   '(":" . meow-goto-line)
+   '("X" . consult-goto-line)
+   '(":" . consult-goto-line)
    '("y" . meow-save)
    '("Y" . meow-sync-grab)
    '("z" . meow-pop-selection)
@@ -129,12 +129,46 @@
 
 (leaf consult
   :straight t
+  :setq
+  (xref-show-xrefs-function . #'consult-xref)
+  (xref-show-definitions-function . #'consult-xref)
   :config
   (consult-customize
    consult-ripgrep consult-git-grep consult-grep)
   :bind
   (("M-y" . consult-yank-pop)
+   ("M-c" . clipboard-kill-ring-save)
    ("M-+ f" . consult-ripgrep)
-   ("M-+ G" . consult-git-grep)
    ("M-+ l" . consult-line)
    ("C-x C-b" . consult-buffer)))
+
+(leaf marginalia
+  :straight t
+  :init
+  (marginalia-mode))
+
+
+(leaf embark
+  :straight t
+  :bind
+  (("M-." . embark-act)         ;; pick some comfortable binding
+   ("C-;" . embark-dwim)        ;; good alternative: M-.
+   ("C-h B" . embark-bindings)) ;; alternative for `describe-bindings'
+  :init
+
+  (setq prefix-help-command #'embark-prefix-help-command)
+
+  ;; (setq eldoc-documentation-strategy #'eldoc-documentation-compose-eagerly)
+
+  :config
+  (add-hook 'eldoc-documentation-functions #'embark-eldoc-first-target)
+  (add-to-list 'display-buffer-alist
+               '("\\`\\*Embark Collect \\(Live\\|Completions\\)\\*"
+                 nil
+                 (window-parameters (mode-line-format . none)))))
+
+
+(leaf embark-consult
+  :straight t
+  :hook
+  (embark-collect-mode-hook . consult-preview-at-point-mode))

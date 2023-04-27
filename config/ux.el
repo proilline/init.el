@@ -35,12 +35,15 @@
   ((popper-reference-buffers
     . '("\\*Messages\\*"
 	"Ouptput\\*$"
-	"\\*Warnigns\\*"
+	"\\*Warnings\\*"
 	"\\*Async Shell Command\\*"
 	".*eshell\\*$" eshell-mode
+	".*vterm\\*$" vterm-mode
 	"\\*xref\\*"
 	"^\\*eldoc.*\\*$"
 	"^\\*Man.*$"
+	"^\\*EGLOT.*\\*$"
+	"\\*Embark Collect:.*\\*"
 	help-mode
 	compilation-mode)))
   :bind

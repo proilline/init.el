@@ -23,26 +23,27 @@
       :config
       (leaf-keywords-init))
 
-;; 이거 쪼개버리는게 여러모로 낫겠다.
 (leaf cus-start
   :doc "define customization properties of builtins"
   :custom ((menu-bar-mode . nil)
 	   (tool-bar-mode . nil)
 	   (scroll-bar-mode . nil)
-	   (prefer-codig-system . 'utf-8))
+	   
+	   (prefer-codig-system . 'utf-8)
+	   (read-process-output-max . 1048576)
+	   
+	   (completion-cycle-threshold . 2)
+	   (tab-always-indent . 'complete)
+	   (inhibit-compacting-font-caches . t)
+	   (minibuffer-prompt-properties
+	    . '(read-only t cursor-intangible t face minibuffer-prompt))
+	   
+	   (make-backup-files . nil))
 
   :hook ((prog-mode-hook text-smode-hook . display-line-numbers-mode)
 	 (prog-mode-hook text-mode-hook . electric-pair-mode)
 	 (minibuffer-setup-hook . cursor-intangible-mode))
   
-  :setq ((gc-cons-threshold       . 104857600) ;; 100mb
-	 (read-process-output-max . 1048576)  ;; 1mb
-	 (completion-cycle-threshold . 3) ;; if completion <= 3, just cycling
-	 (tab-always-indent . 'complete) ;; completion settings for corfu
-	 (inhibit-compacting-font-caches . t) ;; gc don't remove font caches
-	 (minibuffer-prompt-properties
-	  . '(read-only t cursor-intangible t face minibuffer-prompt))
-	 (make-backup-files . nil))
   :advice
   (:filter-args completing-read-multipe crm-indicator) ;; settings for vertico
   
@@ -75,3 +76,11 @@
     (setq exec-path (split-string path-from-shell path-separator))))
 
 (set-exec-path-from-shell-PATH)
+
+(leaf gcmh
+  :straight t
+  :init
+  (gcmh-mode 1)
+  :setq
+  (gcmh-high-cons-threshold . 100000000) ;; 100mb
+  (gcmh-low-cons-threshold . 10000000)) ;; 10mb
