@@ -24,7 +24,7 @@
    '("s" . "M-+")
    '("p" . "M-p")
    ;; Use SPC (0-9) for digit arguments.
-   '("1" . meow-digit-argument)
+   
    '("2" . meow-digit-argument)
    '("3" . meow-digit-argument)
    '("4" . meow-digit-argument)
@@ -154,9 +154,9 @@
   (("M-." . embark-act)         ;; pick some comfortable binding
    ("C-;" . embark-dwim)        ;; good alternative: M-.
    ("C-h B" . embark-bindings)) ;; alternative for `describe-bindings'
-  :init
 
-  (setq prefix-help-command #'embark-prefix-help-command)
+  :setq
+  (prefix-help-command . #'embark-prefix-help-command)
 
   ;; (setq eldoc-documentation-strategy #'eldoc-documentation-compose-eagerly)
 

@@ -1,7 +1,6 @@
 ;; proilline's personal emacs settings
 
 ;; load config files
-;; midnight mode & cleanbuffer list
 
 (load-file "~/.emacs.d/config/core.el")
 (load-file "~/.emacs.d/config/edit.el")
@@ -17,19 +16,6 @@
       (make-directory target-dir t))))
 
 (add-to-list 'find-file-not-found-functions #'er-auto-create-missing-dirs)
-
-(leaf tempel
-  :straight t
-  :init
-
-  (defun tempel-setup-capf()
-    (setq-local completion-at-point-functions
-		(cons #'tempel-expand
-		      completion-at-point-functions)))
-  :bind
-  (("M-n" . tempel-complete))
-  :hook
-  ((prog-mode-hook text-mode-hook) . tempel-setup-capf))
 
 (leaf dirvish
   :straight t
@@ -83,6 +69,35 @@
   :config
   (super-save-mode +1))
 
+(leaf savehist
+  :straight t
+  :init
+  (savehist-mode))
+
+(leaf tempel
+  :straight t
+  :init
+  (defun tempel-setup-capf ()
+    (setq-local completion-at-point-functions
+		(cons #'tempel-expand
+		      completion-at-point-functions)))
+  :hook
+  (prog-mode-hook . tempel-setup-capf)
+  (text-mode-hook . tempel-setup-capf)
+  :bind
+  ("M-n" . tempel-insert)
+  ("M-j" . forward-paragraph)
+  ("M-k" . backward-paragraph))
+
+(leaf tempel-collection
+  :straight t
+  :after tempel)
+
+(leaf ocamlformat
+  :straight t
+  :custom (ocamlformat-enable . 'enable-outside-detected-project)
+  :hook (before-save-hook . ocamlformat-before-save))
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -95,3 +110,6 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.)
 )
+;; ## added by OPAM user-setup for emacs / base ## 56ab50dc8996d2bb95e7856a6eddb17b ## you can edit, but keep this line
+(require 'opam-user-setup "~/.emacs.d/opam-user-setup.el")
+;; ## end of OPAM user-setup addition for emacs / base ## keep this line

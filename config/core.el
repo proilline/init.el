@@ -3,7 +3,6 @@
 
 ;; straight.el, leaf.el, and some builtin settings here.
 
-(setq straight-repository-branch "rr-fix-renamed-variable")
 (defvar bootstrap-version)
 (let ((bootstrap-file
        (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))

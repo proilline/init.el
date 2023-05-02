@@ -43,7 +43,7 @@
 	"^\\*eldoc.*\\*$"
 	"^\\*Man.*$"
 	"^\\*EGLOT.*\\*$"
-	"\\*Embark Collect:.*\\*"
+	"\\*Embark.*\\*"
 	help-mode
 	compilation-mode)))
   :bind
