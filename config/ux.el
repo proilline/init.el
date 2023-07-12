@@ -42,8 +42,8 @@
 	"\\*xref\\*"
 	"^\\*eldoc.*\\*$"
 	"^\\*Man.*$"
-	"^\\*EGLOT.*\\*$"
 	"\\*Embark.*\\*"
+	"\\*OCaml.*\\*"
 	help-mode
 	compilation-mode)))
   :bind
@@ -72,4 +72,11 @@
   (add-to-list 'completion-at-point-functions #'cape-dabbrev)
   (add-to-list 'completion-at-point-functions #'cape-file))
 
+(leaf which-key
+  :straight t
+  :setq
+  (which-key-use-C-h-commands . t)
+  :config
+  (which-key-setup-minibuffer)
+  (which-key-mode))
 

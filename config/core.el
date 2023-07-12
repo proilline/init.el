@@ -47,7 +47,6 @@
   (:filter-args completing-read-multipe crm-indicator) ;; settings for vertico
   
   :bind
-  ("M-SPC"   . async-shell-command)
   ("C-x b"   . 'ibuffer))
 
 (add-to-list 'default-frame-alist '(font . "iosevka-16"))

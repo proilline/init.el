@@ -1,7 +1,6 @@
 ;; proilline's personal emacs settings
-
 ;; load config files
-
+;;
 (load-file "~/.emacs.d/config/core.el")
 (load-file "~/.emacs.d/config/edit.el")
 (load-file "~/.emacs.d/config/theme.el")
@@ -60,6 +59,7 @@
   (flymake-mode-hook . flymake-diagnostic-at-point-mode))
 
 (leaf cmake-mode
+  :defvar end
   :straight t)
 
 (fset 'yes-or-no-p 'y-or-n-p) ;; yes-or-no to y-or-n
@@ -67,7 +67,7 @@
 (leaf super-save
   :straight t
   :config
-  (super-save-mode +1))
+(super-save-mode +1))
 
 (leaf savehist
   :straight t
@@ -93,10 +93,18 @@
   :straight t
   :after tempel)
 
-(leaf ocamlformat
-  :straight t
-  :custom (ocamlformat-enable . 'enable-outside-detected-project)
-  :hook (before-save-hook . ocamlformat-before-save))
+(leaf utop
+  :straight t)
+
+(leaf eglot
+  :straight t)
+
+(leaf dune
+  :straight t)
+
+(defun node-repl () (interactive)
+      (setenv "NODE_NO_READLINE" "1") ;avoid fancy terminal codes
+      (pop-to-buffer (make-comint "node-repl" "node" nil "--interactive")))
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -108,8 +116,5 @@
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.)
-)
-;; ## added by OPAM user-setup for emacs / base ## 56ab50dc8996d2bb95e7856a6eddb17b ## you can edit, but keep this line
-(require 'opam-user-setup "~/.emacs.d/opam-user-setup.el")
-;; ## end of OPAM user-setup addition for emacs / base ## keep this line
+ ;; If there is more than one, they won't work right.
+ )
